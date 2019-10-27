@@ -1,3 +1,8 @@
+# Compiled files
+*.js
+*.js.map
+test/*.d.ts
+
 # Logs
 logs
 *.log
