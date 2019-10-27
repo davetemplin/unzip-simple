@@ -1,14 +1,13 @@
 # unzip-simple
-> Super-simple **unzip-to-memory** API with *file globbing*
 
-This is an unzip library providing a super-simple, promise-based API that makes it easy to perform in-memory extractions with a single line of code...
+A super-simple unzip API that makes it easy extract files with a single line of code...
 ```js
 import unzip from 'unzip-simple';
 const [file] = await unzip('single-file-example.zip');
 console.log(file.buffer.toString());
 ```
 
-There's also an easy way to filter files by applying a [file globbing](https://en.wikipedia.org/wiki/Glob_(programming)) pattern...
+Filter files by applying a [file globbing](https://en.wikipedia.org/wiki/Glob_(programming)) pattern...
 ```js
 const files = await unzip({input: 'multi-file-example.zip', filter: '*.txt'});
 for (const file of files)
@@ -20,27 +19,29 @@ file2.txt {file2-content}
 ...
 ```
 
-# Overview
-The examples above return an array of files, where each file contains the name and content for each extracted file. It's also easy to get a directory listing from an archive without actually extracting the files themselves. Additional usage examples are given below.
 
+# Overview
+The API returns an array of files, where each file contains the name and content for each extracted file. It's also easy to get a directory listing from an archive without actually extracting the files themselves. Additional usage examples are given below.
 
 This libary is built on top of **[yauzl by Josh Wolfe](https://github.com/thejoshwolfe/yauzl)** and is intended for handling light-weight data extraction that can be easily held in-memory. If dealing with very large archives is a requirement, a lower level streaming interface like the one provided in *yauzl* should be used instead.
 
 
 # Usage
-
-Below are some additional usage examples.
+Below are some common usage examples.
 
 ### Extract all files from a ZIP archive on disc...
 ```js
+import unzip from 'unzip-simple';
 const files = await unzip('example.zip');
+for (const file of files)
+    console.log(file.name, file.buffer.toString());
 ```
 
 ### Extract all files from a downloaded ZIP archive...
 ```js
 import unzip from 'unzip-simple';
 import fetch from 'node-fetch';
-const response = await fetch('https://www.example.com/download.zip');
+const response = await fetch('https://github.com/davetemplin/unzip-simple/raw/master/test/example1.zip');
 const buffer = await response.buffer();
 const files = await unzip(buffer);
 ```
@@ -48,14 +49,13 @@ const files = await unzip(buffer);
 ### Obtain a directory listing from a ZIP archive without performing any file extraction...
 ```js
 import unzip from 'unzip-simple';
-const files = await unzip({input: 'example1.zip', extract: false});
+const files = await unzip({input: 'example.zip', extract: false});
 for (const file of files)
     console.log(file.name, file.compressed, file.uncompressed);
 ```
 ```
-
-example1/foo.txt 208 330
-example1/foobar.txt 148 213
+foo.txt 208 330
+bar.txt 148 213
 ...
 ```
 
