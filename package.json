@@ -10,8 +10,25 @@
     "type": "git",
     "url": "git+https://github.com/davetemplin/unzip-simple.git"
   },
-  "keywords": [],
-  "author": "Dave Templin",
+  "keywords": [
+    "unzip",
+    "zip",
+    "zlib",
+    "uncompress",
+    "archive",
+    "extract",
+    "promise",
+    "async",
+    "await",
+    "file",
+    "glob",
+    "globbing"
+  ],
+  "author": {
+    "name": "Dave Templin",
+    "email": "davetemplin@hotmail.com",
+    "url": "https://github.com/davetemplin/"
+  },
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/davetemplin/unzip-simple/issues"
@@ -19,7 +36,7 @@
   "homepage": "https://github.com/davetemplin/unzip-simple#readme",
   "devDependencies": {
     "@types/chai": "^4.2.4",
-    "@types/minimatch": "^3.0.3",
+    "@types/micromatch": "^3.1.0",
     "@types/mocha": "^5.2.7",
     "@types/node": "^12.11.7",
     "@types/yauzl": "^2.9.1",
@@ -27,7 +44,7 @@
     "mocha": "^6.2.2"
   },
   "dependencies": {
-    "minimatch": "^3.0.4",
+    "micromatch": "^4.0.2",
     "yauzl": "^2.10.0"
   }
 }

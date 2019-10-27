@@ -1,4 +1,4 @@
-import minimatch from 'minimatch';
+import * as micromatch from 'micromatch';
 import * as yauzl from 'yauzl';
 
 export interface UnzipFile {
@@ -43,7 +43,7 @@ function extractAll({zipfile, filter, extract, err, resolve, reject}: ExtractOpt
         zipfile.readEntry();
         zipfile.on('entry', async entry => {
             const name = entry.fileName as string;
-            if (!name.endsWith('/') && (!filter || minimatch(name, filter, {matchBase: true}))) {
+            if (!name.endsWith('/') && (!filter || micromatch.isMatch(name, filter, {matchBase: true}))) {
                 const buffer = extract ? await extractEntry(zipfile, entry) : undefined;
                 if (!(buffer instanceof Error)) {
                     result.push({

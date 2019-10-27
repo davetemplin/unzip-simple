@@ -1,7 +1,4 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
@@ -10,7 +7,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const minimatch_1 = __importDefault(require("minimatch"));
+const micromatch = __importStar(require("micromatch"));
 const yauzl = __importStar(require("yauzl"));
 async function extractEntry(zipfile, entry) {
     return new Promise(resolve => zipfile.openReadStream(entry, (err, r) => {
@@ -30,7 +27,7 @@ function extractAll({ zipfile, filter, extract, err, resolve, reject }) {
         zipfile.readEntry();
         zipfile.on('entry', async (entry) => {
             const name = entry.fileName;
-            if (!name.endsWith('/') && (!filter || minimatch_1.default(name, filter, { matchBase: true }))) {
+            if (!name.endsWith('/') && (!filter || micromatch.isMatch(name, filter, { matchBase: true }))) {
                 const buffer = extract ? await extractEntry(zipfile, entry) : undefined;
                 if (!(buffer instanceof Error)) {
                     result.push({
