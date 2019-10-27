@@ -1,1 +1,6 @@
+*.ts
+*.js.map
+tsconfig.json
 test
+.vscode
+!index.d.ts
