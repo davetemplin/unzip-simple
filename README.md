@@ -1,6 +1,6 @@
 # unzip-simple
 
-A super-simple unzip API that simplifies file extraction...
+A super-simple unzip API...
 ```js
 import unzip from 'unzip-simple';
 const [file] = await unzip('single-file-example.zip');
@@ -89,4 +89,4 @@ compressed   | `number` | Compressed size of the file (in bytes).
 uncompressed | `number` | Uncompressed size of the file (in bytes).
  
 
-This API is intended for handling light-weight data extraction that can be easily held in-memory. If dealing with very large archives is a requirement, a lower level streaming interface like the one provided in *yauzl* should be used instead.
+This API is intended for handling light-weight data extraction that can be easily held in-memory. If dealing with very large archives is a requirement, a lower level streaming interface like the one provided in *[yauzl](https://www.npmjs.com/package/yauzl)* should be used instead.
